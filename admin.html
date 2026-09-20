@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ICTTVRWANDA - Admin</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f4f7;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .box {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 3px 15px #ccc;
+    }
+
+    h1 {
+      text-align: center;
+      color: #111;
+    }
+
+    input, textarea, button {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 13px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    textarea {
+      height: 180px;
+    }
+
+    button {
+      background: #111;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #333;
+    }
+
+    .success {
+      color: green;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+  <h1>ICTTVRWANDA Admin</h1>
+
+  <input type="text" id="title" placeholder="Umutwe w'amakuru">
+
+  <textarea id="content"
+    placeholder="Andika amakuru hano..."></textarea>
+
+  <input type="text" id="image"
+    placeholder="Link y'ifoto (optional)">
+
+  <button onclick="saveNews()">SHYIRAHO AMAKURU</button>
+
+  <p id="message" class="success"></p>
+</div>
+
+<script>
+function saveNews() {
+  const title = document.getElementById("title").value;
+  const content = document.getElementById("content").value;
+  const image = document.getElementById("image").value;
+
+  if (!title || !content) {
+    alert("Andika umutwe n'amakuru mbere yo kubika.");
+    return;
+  }
+
+  const news = {
+    title: title,
+    content: content,
+    image: image,
+    date: new Date().toLocaleString()
+  };
+
+  localStorage.setItem("icttvwanda_news", JSON.stringify(news));
+
+  document.getElementById("message").innerText =
+    "Amakuru yabitswe neza!";
+
+  document.getElementById("title").value = "";
+  document.getElementById("content").value = "";
+  document.getElementById("image").value = "";
+}
+</script>
+
+</body>
+</html>
